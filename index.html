@@ -1,0 +1,330 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Personalised Vegetarian Weight‑Gain Planner</title>
+<style>
+    body{font-family:Arial,sans-serif;background:#f4f4f4;margin:0;padding:0;color:#333;}
+    header{background:#4caf50;color:#fff;padding:1rem;text-align:center;}
+    .container{max-width:900px;margin:auto;padding:1rem;}
+    select, input, button{padding:.5rem;margin:.2rem;}
+    .card{background:#fff;box-shadow:0 2px 5px rgba(0,0,0,.1);margin:1rem 0;padding:1rem;border-radius:5px;}
+    .meal{margin-bottom:.6rem;}
+    .nutri{font-size:.85rem;color:#555;}
+    .grocery{column-count:2;column-gap:2rem;}
+    .hidden{display:none;}
+    .error{color:#c00;font-size:.9rem;}
+</style>
+</head>
+<body>
+
+<header>
+    <h1>🌱 Personalised Vegetarian Weight‑Gain Planner</h1>
+</header>
+
+<div class="container">
+
+    <!-- 1️⃣ Profile input form -->
+    <section id="inputSection" class="card">
+        <h2>Enter Your Details</h2>
+        <form id="profileForm">
+            <label>Age (years):
+                <input type="number" id="age" min="10" max="120" required>
+            </label><br>
+            <label>Weight (kg):
+                <input type="number" id="weight" min="30" max="200" step="0.1" required>
+            </label><br>
+            <label>Height (cm):
+                <input type="number" id="height" min="100" max="250" step="0.1" required>
+            </label><br>
+            <label>Goal:
+                <select id="goal" required>
+                    <option value="gain_weight">Gain weight (muscle)</option>
+                    <option value="maintain_weight">Maintain weight</option>
+                    <option value="lose_weight">Lose weight</option>
+                </select>
+            </label><br>
+            <label>Activity level:
+                <select id="activity" required>
+                    <option value="sedentary">Sedentary (little or no exercise)</option>
+                    <option value="light">Light (1‑3 days/week)</option>
+                    <option value="moderate">Moderate (3‑5 days/week)</option>
+                    <option value="active">Active (6‑7 days/week)</option>
+                </select>
+            </label><br>
+            <label>Diet style:
+                <select id="diet" required>
+                    <option value="vegetarian">Vegetarian</option>
+                    <option value="vegan">Vegan</option>
+                    <option value="flexitarian">Flexitarian</option>
+                </select>
+            </label><br>
+            <button type="submit">Save & Continue</button>
+            <p id="formError" class="error"></p>
+        </form>
+    </section>
+
+    <!-- 2️⃣ Profile summary -->
+    <section id="profileSection" class="card hidden">
+        <h2>Your Profile</h2>
+        <ul id="profileList"></ul>
+        <button id="editProfileBtn">Edit Details</button>
+    </section>
+
+    <!-- 3️⃣ Week selector -->
+    <section id="selectorSection" class="card hidden">
+        <label for="weekSelect">Select week:</label>
+        <select id="weekSelect"></select>
+        <button id="showPlanBtn">Show Meals</button>
+    </section>
+
+    <!-- 4️⃣ Meals -->
+    <section id="mealsSection" class="card hidden">
+        <h2>Meals – Week <span id="weekNum"></span></h2>
+        <div id="mealsContainer"></div>
+    </section>
+
+    <!-- 5️⃣ Grocery list -->
+    <section id="grocerySection" class="card hidden">
+        <h2>Grocery List – Week <span id="groceryWeek"></span></h2>
+        <ul id="groceryList" class="grocery"></ul>
+    </section>
+</div>
+
+<script>
+/* -------------------------------------------------
+   GLOBAL DATA – will be filled by fetching app.json
+   -------------------------------------------------*/
+let dietData = null;   // will hold the whole JSON once loaded
+
+/* -------------------------------------------------
+   Helper – calculate a rough daily‑calorie target
+   -------------------------------------------------*/
+function calculateCalories({age, weightKg, heightCm, goal, activity}) {
+    const bmr = 10 * weightKg + 6.25 * heightCm - 5 * age + 5; // middle‑ground (+5)
+    const activityFactors = {
+        sedentary: 1.2,
+        light: 1.375,
+        moderate: 1.55,
+        active: 1.725
+    };
+    let calories = Math.round(bmr * activityFactors[activity]);
+    if (goal === "gain_weight") calories += 300;
+    else if (goal === "lose_weight") calories -= 300;
+    return calories;
+}
+
+/* -------------------------------------------------
+   Load the JSON file (app.json)
+   -------------------------------------------------*/
+fetch('app.json')
+  .then(r => {
+      if (!r.ok) throw new Error('Network response was not ok');
+      return r.json();
+  })
+  .then(data => {
+      dietData = data;
+      initialiseApp();
+  })
+  .catch(err => {
+      console.error('Failed to load app.json', err);
+      alert('❗ Could not load the diet data. Check that app.json is in the repo.');
+  });
+
+/* -------------------------------------------------
+   Initialise – check for stored profile or show form
+   -------------------------------------------------*/
+function initialiseApp() {
+    if (loadSavedProfile()) {
+        // we have a stored profile – skip the form
+        hideAll();
+        renderProfile();
+        populateWeeks();
+        show('profileSection');
+        show('selectorSection');
+    } else {
+        hideAll();
+        show('inputSection');
+    }
+}
+
+/* -------------------------------------------------
+   Load saved profile from localStorage (if any)
+   -------------------------------------------------*/
+function loadSavedProfile() {
+    const saved = localStorage.getItem('userProfile');
+    if (saved && dietData) {
+        try {
+            const obj = JSON.parse(saved);
+            Object.assign(dietData.userProfile, obj);
+            return true;
+        } catch (e) {
+            console.warn('Corrupt profile in storage', e);
+            localStorage.removeItem('userProfile');
+        }
+    }
+    return false;
+}
+
+/* -------------------------------------------------
+   Show / hide helpers
+   -------------------------------------------------*/
+function hideAll() { document.querySelectorAll('.hidden').forEach(el=>el.classList.add('hidden')); }
+function show(id) { document.getElementById(id).classList.remove('hidden'); }
+
+/* -------------------------------------------------
+   Render profile summary
+   -------------------------------------------------*/
+function renderProfile() {
+    const up = dietData.userProfile;
+    document.getElementById('profileList').innerHTML = `
+        <li>Age: ${up.age} y</li>
+        <li>Weight: ${up.weightKg} kg</li>
+        <li>Height: ${up.heightCm} cm</li>
+        <li>Goal: ${up.goal.replace('_',' ')}</li>
+        <li>Diet: ${up.diet}</li>
+        <li>Activity level: ${up.activityLevel}</li>
+        <li>Estimated daily calories: ${up.calorieTarget} kcal</li>
+    `;
+}
+
+/* -------------------------------------------------
+   Populate week selector
+   -------------------------------------------------*/
+function populateWeeks() {
+    const sel = document.getElementById('weekSelect');
+    sel.innerHTML = '';
+    dietData.weeks.forEach(w => {
+        const opt = document.createElement('option');
+        opt.value = w.week;
+        opt.textContent = `Week ${w.week}`;
+        sel.appendChild(opt);
+    });
+}
+
+/* -------------------------------------------------
+   Show meals & grocery list for selected week
+   -------------------------------------------------*/
+function showWeek() {
+    const weekNum = parseInt(document.getElementById('weekSelect').value);
+    const wk = dietData.weeks.find(w => w.week === weekNum);
+    if (!wk) return;
+
+    // ---- Meals ----
+    const order = ['breakfast','midMorningSnack','lunch','afternoonSnack','dinner','eveningSnack'];
+    const container = document.getElementById('mealsContainer');
+    container.innerHTML = '';
+    order.forEach(key => {
+        const opts = wk.dailyPlan[key];
+        const div = document.createElement('div');
+        div.className = 'meal';
+        div.innerHTML = `<strong>${prettyKey(key)}:</strong>`;
+        opts.slice(0,2).forEach(opt => {
+            const od = document.createElement('div');
+            od.style.marginLeft = '1rem';
+            od.innerHTML = `
+                <em>${opt.name}</em><br>
+                <small class="nutri">
+                    Calories: ${opt.nutrition.calories} kcal |
+                    Protein: ${opt.nutrition.protein_g} g |
+                    Carbs: ${opt.nutrition.carbs_g} g |
+                    Fat: ${opt.nutrition.fat_g} g
+                </small><br>
+                <small>Ingredients: ${opt.ingredients.join(', ')}</small>
+            `;
+            div.appendChild(od);
+        });
+        container.appendChild(div);
+    });
+    document.getElementById('weekNum').textContent = weekNum;
+    show('mealsSection');
+
+    // ---- Grocery ----
+    const gList = document.getElementById('groceryList');
+    gList.innerHTML = '';
+    wk.groceryList.forEach(item => {
+        const li = document.createElement('li');
+        li.textContent = item;
+        gList.appendChild(li);
+    });
+    document.getElementById('groceryWeek').textContent = weekNum;
+    show('grocerySection');
+}
+
+/* -------------------------------------------------
+   Pretty‑print helper
+   -------------------------------------------------*/
+function prettyKey(k){
+    const map = {
+        midMorningSnack:'Mid‑Morning Snack',
+        afternoonSnack:'Afternoon Snack',
+        eveningSnack:'Evening Snack'
+    };
+    return map[k] || k.charAt(0).toUpperCase() + k.slice(1);
+}
+
+/* -------------------------------------------------
+   Form submission – validate, store, recalc calories
+   -------------------------------------------------*/
+document.getElementById('profileForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    const age = parseInt(document.getElementById('age').value);
+    const weight = parseFloat(document.getElementById('weight').value);
+    const height = parseFloat(document.getElementById('height').value);
+    const goal = document.getElementById('goal').value;
+    const activity = document.getElementById('activity').value;
+    const diet = document.getElementById('diet').value;
+
+    if (!age || !weight || !height) {
+        document.getElementById('formError').textContent = 'Please fill all numeric fields.';
+        return;
+    }
+    document.getElementById('formError').textContent = '';
+
+    const up = dietData.userProfile;
+    up.age = age;
+    up.weightKg = weight;
+    up.heightCm = height;
+    up.goal = goal;
+    up.activityLevel = activity;
+    up.diet = diet;
+    up.calorieTarget = calculateCalories({age, weightKg: weight, heightCm: height, goal, activity});
+
+    // Save to localStorage (only the mutable part)
+    localStorage.setItem('userProfile', JSON.stringify({
+        age, weightKg: weight, heightCm: height,
+        goal, activityLevel: activity, diet,
+        calorieTarget: up.calorieTarget
+    }));
+
+    hideAll();
+    renderProfile();
+    populateWeeks();
+    show('profileSection');
+    show('selectorSection');
+});
+
+/* -------------------------------------------------
+   Edit profile button – bring back the form
+   -------------------------------------------------*/
+document.getElementById('editProfileBtn').addEventListener('click', () => {
+    hideAll();
+    const up = dietData.userProfile;
+    document.getElementById('age').value = up.age;
+    document.getElementById('weight').value = up.weightKg;
+    document.getElementById('height').value = up.heightCm;
+    document.getElementById('goal').value = up.goal;
+    document.getElementById('activity').value = up.activityLevel;
+    document.getElementById('diet').value = up.diet;
+    show('inputSection');
+});
+
+/* -------------------------------------------------
+   Show‑plan button
+   -------------------------------------------------*/
+document.getElementById('showPlanBtn').addEventListener('click', showWeek);
+</script>
+
+</body>
+</html>
