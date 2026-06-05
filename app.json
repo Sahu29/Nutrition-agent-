@@ -1,0 +1,409 @@
+json
+{
+  "userProfile": {
+    "age": 24,
+    "weightKg": 65,
+    "heightCm": 167,
+    "goal": "gain_weight",
+    "diet": "vegetarian",
+    "activityLevel": "moderate",
+    "calorieTarget": 2600,
+    "proteinGoal_g": 120,
+    "carbGoal_g": 350,
+    "fatGoal_g": 75
+  },
+  "weeks": [
+    {
+      "week": 1,
+      "dailyPlan": {
+        "breakfast": [
+          {
+            "name": "Oats‑Banana Protein Porridge",
+            "ingredients": [
+              "1 cup rolled oats",
+              "1 cup milk (or soy/almond milk)",
+              "1 scoop plant‑based protein powder",
+              "1 banana, sliced",
+              "1 tbsp chopped almonds",
+              "1 tsp honey"
+            ],
+            "nutrition": { "calories": 520, "protein_g": 30, "carbs_g": 70, "fat_g": 12 }
+          },
+          {
+            "name": "Paneer & Veg Sandwich",
+            "ingredients": [
+              "2 slices whole‑grain bread",
+              "100 g paneer, grilled",
+              "Spinach leaves",
+              "Tomato slices",
+              "1 tsp olive oil (for grilling)"
+            ],
+            "nutrition": { "calories": 480, "protein_g": 28, "carbs_g": 55, "fat_g": 14 }
+          }
+        ],
+        "midMorningSnack": [
+          {
+            "name": "Greek‑style Yogurt with Mixed Nuts",
+            "ingredients": [
+              "200 g soy‑yogurt (plain)",
+              "2 tbsp mixed nuts (almonds, walnuts, cashews)",
+              "1 tsp chia seeds"
+            ],
+            "nutrition": { "calories": 320, "protein_g": 15, "carbs_g": 18, "fat_g": 20 }
+          }
+        ],
+        "lunch": [
+          {
+            "name": "Quinoa‑Mixed Veggie Bowl",
+            "ingredients": [
+              "1 cup cooked quinoa",
+              "½ cup roasted chickpeas",
+              "½ cup mixed bell‑pepper strips",
+              "½ cup steamed broccoli",
+              "2 tbsp hummus",
+              "1 tbsp olive oil drizzled"
+            ],
+            "nutrition": { "calories": 620, "protein_g": 25, "carbs_g": 80, "fat_g": 20 }
+          },
+          {
+            "name": "Dal‑Palak with Brown Rice",
+            "ingredients": [
+              "1 cup cooked brown rice",
+              "1 cup dal (toor/masoor) cooked with spinach",
+              "1 tsp ghee",
+              "Cucumber‑tomato salad"
+            ],
+            "nutrition": { "calories": 610, "protein_g": 24, "carbs_g": 85, "fat_g": 15 }
+          }
+        ],
+        "afternoonSnack": [
+          {
+            "name": "Peanut Butter Banana Smoothie",
+            "ingredients": [
+              "1 cup milk (or soy milk)",
+              "2 tbsp natural peanut butter",
+              "1 banana",
+              "1 scoop whey‑free protein powder",
+              "½ tsp cinnamon"
+            ],
+            "nutrition": { "calories": 460, "protein_g": 32, "carbs_g": 50, "fat_g": 18 }
+          }
+        ],
+        "dinner": [
+          {
+            "name": "Paneer Tikka with Whole‑Wheat Roti",
+            "ingredients": [
+              "150 g paneer, marinated & baked",
+              "2 whole‑wheat rotis",
+              "Mixed vegetable sabzi (cauliflower, carrots, beans)",
+              "Mint‑coriander chutney"
+            ],
+            "nutrition": { "calories": 630, "protein_g": 35, "carbs_g": 70, "fat_g": 22 }
+          },
+          {
+            "name": "Soy‑Chunk Curry with Brown Rice",
+            "ingredients": [
+              "100 g soy‑chunks, cooked in tomato‑onion gravy",
+              "1 cup brown rice",
+              "Side of sautéed green beans",
+              "1 tsp sunflower oil"
+            ],
+            "nutrition": { "calories": 620, "protein_g": 30, "carbs_g": 78, "fat_g": 18 }
+          }
+        ],
+        "eveningSnack": [
+          {
+            "name": "Cottage Cheese (Paneer) & Fruit",
+            "ingredients": [
+              "100 g low‑fat paneer",
+              "½ cup diced mango or papaya",
+              "1 tsp flaxseed powder"
+            ],
+            "nutrition": { "calories": 250, "protein_g": 18, "carbs_g": 30, "fat_g": 6 }
+          }
+        ],
+        "dailyTotals": { "calories": 2850, "protein_g": 187, "carbs_g": 401, "fat_g": 125 }
+      },
+      "groceryList": [
+        "Rolled oats (1 kg)",
+        "Plant‑based protein powder (500 g)",
+        "Bananas (14)",
+        "Almonds, mixed nuts, peanuts (500 g each)",
+        "Soy/almond milk (4 L)",
+        "Whole‑grain bread (1 loaf)",
+        "Paneer (1 kg)",
+        "Quinoa (500 g)",
+        "Chickpeas (dry, 500 g)",
+        "Brown rice (1 kg)",
+        "Mixed bell peppers, broccoli, cauliflower, carrots, beans, spinach (2 kg total)",
+        "Tomatoes, cucumbers, mint, coriander",
+        "Greek‑style soy‑yogurt (1 kg)",
+        "Peanut butter (200 g)",
+        "Whey‑free protein powder (optional, 500 g)",
+        "Olive & sunflower oil (500 ml each)",
+        "Spices, salt, pepper"
+      ]
+    },
+    {
+      "week": 2,
+      "dailyPlan": {
+        "breakfast": [
+          {
+            "name": "Whole‑Wheat Protein Pancakes",
+            "ingredients": [
+              "1 cup whole‑wheat flour",
+              "1 scoop plant‑based protein powder",
+              "1 egg (or flax‑egg for vegan)",
+              "½ cup milk",
+              "½ cup blueberries",
+              "1 tsp maple syrup"
+            ],
+            "nutrition": { "calories": 520, "protein_g": 32, "carbs_g": 68, "fat_g": 12 }
+          }
+        ],
+        "midMorningSnack": [
+          {
+            "name": "Roasted Chickpeas",
+            "ingredients": [
+              "½ cup roasted chickpeas (spiced)",
+              "1 handful raisins"
+            ],
+            "nutrition": { "calories": 210, "protein_g": 9, "carbs_g": 30, "fat_g": 6 }
+          }
+        ],
+        "lunch": [
+          {
+            "name": "Veg‑Lentil Biryani with Raita",
+            "ingredients": [
+              "1 cup basmati rice",
+              "½ cup mixed lentils",
+              "Mixed vegetables (peas, carrots, beans)",
+              "Spices, 1 tsp ghee",
+              "Cucumber‑yogurt raita"
+            ],
+            "nutrition": { "calories": 660, "protein_g": 28, "carbs_g": 95, "fat_g": 18 }
+          }
+        ],
+        "afternoonSnack": [
+          {
+            "name": "Smoothie Bowl",
+            "ingredients": [
+              "½ cup Greek‑style soy‑yogurt",
+              "½ cup frozen berries",
+              "½ banana",
+              "2 tbsp granola",
+              "1 tbsp pumpkin seeds"
+            ],
+            "nutrition": { "calories": 350, "protein_g": 16, "carbs_g": 45, "fat_g": 12 }
+          }
+        ],
+        "dinner": [
+          {
+            "name": "Tofu Stir‑Fry with Noodles",
+            "ingredients": [
+              "150 g firm tofu, cubed",
+              "Whole‑wheat noodles (1 cup cooked)",
+              "Stir‑fry veg (bell pepper, bok choy, carrots)",
+              "2 tbsp soy sauce, 1 tsp sesame oil"
+            ],
+            "nutrition": { "calories": 620, "protein_g": 30, "carbs_g": 80, "fat_g": 20 }
+          }
+        ],
+        "eveningSnack": [
+          {
+            "name": "Milk‑Almond Energy Bar",
+            "ingredients": [
+              "1 homemade bar (dates, almonds, oats, milk powder)",
+              "200 ml warm milk"
+            ],
+            "nutrition": { "calories": 260, "protein_g": 12, "carbs_g": 35, "fat_g": 9 }
+          }
+        ],
+        "dailyTotals": { "calories": 2620, "protein_g": 127, "carbs_g": 353, "fat_g": 77 }
+      },
+      "groceryList": [
+        "Whole‑wheat flour, basmati rice, whole‑wheat noodles",
+        "Protein powder, tofu (400 g)",
+        "Greek‑style soy‑yogurt, milk",
+        "Blueberries, mixed berries, bananas",
+        "Lentils, chickpeas, assorted veg",
+        "Granola, pumpkin seeds, almonds, dates",
+        "Spices, ghee, sesame oil"
+      ]
+    },
+    {
+      "week": 3,
+      "dailyPlan": {
+        "breakfast": [
+          {
+            "name": "Masala Sprouted Moong & Cheese Toast",
+            "ingredients": [
+              "½ cup sprouted moong beans",
+              "2 slices multigrain bread",
+              "50 g low‑fat paneer, grated",
+              "Onion, tomato, green chillies, spices"
+            ],
+            "nutrition": { "calories": 480, "protein_g": 28, "carbs_g": 55, "fat_g": 14 }
+          }
+        ],
+        "midMorningSnack": [
+          {
+            "name": "Fruit‑Nut Lassi",
+            "ingredients": [
+              "1 cup plain soy‑yogurt",
+              "½ cup mango puree",
+              "2 tbsp chopped pistachios",
+              "A pinch cardamom"
+            ],
+            "nutrition": { "calories": 320, "protein_g": 14, "carbs_g": 45, "fat_g": 12 }
+          }
+        ],
+        "lunch": [
+          {
+            "name": "Rajma (Kidney Bean) with Jeera Rice",
+            "ingredients": [
+              "1 cup cooked rajma",
+              "1 cup jeera‑flavored brown rice",
+              "Side salad (lettuce, carrot, cucumber)",
+              "1 tsp ghee"
+            ],
+            "nutrition": { "calories": 660, "protein_g": 26, "carbs_g": 95, "fat_g": 18 }
+          }
+        ],
+        "afternoonSnack": [
+          {
+            "name": "Energy Balls",
+            "ingredients": [
+              "Dates, almonds, cocoa powder, oat flour – rolled into balls"
+            ],
+            "nutrition": { "calories": 240, "protein_g": 8, "carbs_g": 35, "fat_g": 10 }
+          }
+        ],
+        "dinner": [
+          {
+            "name": "Methi‑Paneer with Millet Rotis",
+            "ingredients": [
+              "150 g paneer cooked with fenugreek leaves",
+              "2 millet (bajra) rotis",
+              "1 tsp mustard oil",
+              "Cucumber‑yogurt raita"
+            ],
+            "nutrition": { "calories": 630, "protein_g": 34, "carbs_g": 70, "fat_g": 22 }
+          }
+        ],
+        "eveningSnack": [
+          {
+            "name": "Warm Milk with Turmeric & Almonds",
+            "ingredients": [
+              "250 ml milk (or plant‑milk)",
+              "¼ tsp turmeric",
+              "5 almonds"
+            ],
+            "nutrition": { "calories": 180, "protein_g": 9, "carbs_g": 12, "fat_g": 9 }
+          }
+        ],
+        "dailyTotals": { "calories": 2510, "protein_g": 119, "carbs_g": 352, "fat_g": 85 }
+      },
+      "groceryList": [
+        "Sprouted moong, kidney beans, millet flour",
+        "Paneer, soy‑yogurt, milk",
+        "Mango, dates, pistachios, almonds, cocoa powder",
+        "Whole‑grain bread, spices, mustard oil"
+      ]
+    },
+    {
+      "week": 4,
+      "dailyPlan": {
+        "breakfast": [
+          {
+            "name": "Chia‑Seed Pudding with Nuts",
+            "ingredients": [
+              "3 tbsp chia seeds",
+              "1 cup soy milk",
+              "2 tbsp honey",
+              "¼ cup mixed nuts & seeds",
+              "½ cup sliced kiwi"
+            ],
+            "nutrition": { "calories": 540, "protein_g": 20, "carbs_g": 65, "fat_g": 24 }
+          }
+        ],
+        "midMorningSnack": [
+          {
+            "name": "Protein‑Rich Sprout Salad",
+            "ingredients": [
+              "½ cup mixed sprouts",
+              "½ cup boiled chickpeas",
+              "Chopped capsicum, onion, coriander",
+              "1 tsp olive oil & lemon"
+            ],
+            "nutrition": { "calories": 260, "protein_g": 12, "carbs_g": 35, "fat_g": 8 }
+          }
+        ],
+        "lunch": [
+          {
+            "name": "Vegetable Pulao with Paneer Cubes",
+            "ingredients": [
+              "1 cup basmati rice cooked with peas, carrots, beans",
+              "100 g paneer cubes, lightly fried",
+              "1 tbsp ghee",
+              "Side of curd"
+            ],
+            "nutrition": { "calories": 660, "protein_g": 30, "carbs_g": 95, "fat_g": 20 }
+          }
+        ],
+        "afternoonSnack": [
+          {
+            "name": "Banana‑Almond Smoothie",
+            "ingredients": [
+              "1 banana",
+              "250 ml almond milk",
+              "2 tbsp almond butter",
+              "1 scoop plant protein"
+            ],
+            "nutrition": { "calories": 420, "protein_g": 28, "carbs_g": 45, "fat_g": 18 }
+          }
+        ],
+        "dinner": [
+          {
+            "name": "Soy‑Granules Curry with Quinoa",
+            "ingredients": [
+              "1 cup cooked quinoa",
+              "½ cup soy‑granules cooked in tomato‑onion gravy",
+              "Spinach leaves",
+              "1 tsp coconut oil"
+            ],
+            "nutrition": { "calories": 610, "protein_g": 32, "carbs_g": 78, "fat_g": 16 }
+          }
+        ],
+        "eveningSnack": [
+          {
+            "name": "Cottage Cheese & Fruit Bowl",
+            "ingredients": [
+              "100 g low‑fat paneer",
+              "½ cup diced pineapple",
+              "1 tbsp hemp seeds"
+            ],
+            "nutrition": { "calories": 210, "protein_g": 15, "carbs_g": 22, "fat_g": 6 }
+          }
+        ],
+        "dailyTotals": { "calories": 2700, "protein_g": 137, "carbs_g": 340, "fat_g": 92 }
+      },
+      "groceryList": [
+        "Chia seeds, almond butter, hemp seeds",
+        "Quinoa, basmati rice, soy‑granules",
+        "Paneer, soy‑yogurt, almond milk",
+        "Mixed nuts, kiwi, pineapple, banana",
+        "Mixed vegetables, spinach, sprouts"
+      ]
+    }
+  ],
+  "generalGuidelines": [
+    "Eat every 3‑4 hours – the plan provides 6 small meals to keep calories steady.",
+    "Aim for 1.6‑2.2 g protein per kg body weight (≈120‑140 g/day).",
+    "Stay hydrated – 2.5‑3 L water/day; include herbal teas or buttermilk.",
+    "Combine strength‑training (3‑4 days/week) with these meals for lean mass gain.",
+    "Adjust portion sizes up/down by 10 % if you notice too rapid/slow weight change.",
+    "If any ingredient is unavailable, swap with a similar‑calorie vegetarian option (e.g., replace quinoa with millet or barley)."
+  ],
+  "disclaimer": "This plan is for general wellness and weight‑gain guidance. It does NOT replace professional medical or nutrition advice. Please consult a doctor or certified nutritionist before starting, especially if you have health conditions."
+}
