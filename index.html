@@ -118,7 +118,7 @@ function calculateCalories({age, weightKg, heightCm, goal, activity}) {
 /* -------------------------------------------------
    Load the JSON file (app.json)
    -------------------------------------------------*/
-fetch('app.json')
+fetch('./app.json')
   .then(r => {
       if (!r.ok) throw new Error('Network response was not ok');
       return r.json();
